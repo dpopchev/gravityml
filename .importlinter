@@ -1,0 +1,75 @@
+[importlinter]
+root_package = gravityml
+
+[importlinter:contract:datasets-rings]
+name = Datasets context: onion rings (independent siblings over domain)
+type = layers
+layers =
+    (gravityml.datasets.__main__)
+    gravityml.datasets.application | (gravityml.datasets.infrastructure)
+    gravityml.datasets.domain
+
+[importlinter:contract:mlmodel-rings]
+name = mlmodel context: onion rings (independent siblings over domain)
+type = layers
+layers =
+    (gravityml.mlmodel.__main__)
+    gravityml.mlmodel.application | (gravityml.mlmodel.infrastructure)
+    gravityml.mlmodel.domain
+
+[importlinter:contract:cli-rings]
+name = CLI delivery: onion rings (independent siblings over domain)
+type = layers
+layers =
+    gravityml.cli.application | gravityml.cli.infrastructure
+    gravityml.cli.domain
+
+# --- domain seal: a context's domain is private to its OWN application + infrastructure ---
+
+[importlinter:contract:main-domain-seal]
+name = Composition roots import no domain directly (only application + infrastructure)
+type = forbidden
+source_modules =
+    gravityml.__main__
+    gravityml.config
+forbidden_modules =
+    gravityml.datasets.domain
+    gravityml.mlmodel.domain
+    gravityml.cli.domain
+allow_indirect_imports = True
+
+[importlinter:contract:datasets-domain-private]
+name = datasets.domain is private to datasets.application + datasets.infrastructure
+type = forbidden
+source_modules =
+    gravityml.cli.application
+    gravityml.cli.infrastructure
+    gravityml.mlmodel.application
+    gravityml.mlmodel.infrastructure
+forbidden_modules =
+    gravityml.datasets.domain
+allow_indirect_imports = True
+
+[importlinter:contract:mlmodel-domain-private]
+name = mlmodel.domain is private to mlmodel.application + mlmodel.infrastructure
+type = forbidden
+source_modules =
+    gravityml.cli.application
+    gravityml.cli.infrastructure
+    gravityml.datasets.application
+    gravityml.datasets.infrastructure
+forbidden_modules =
+    gravityml.mlmodel.domain
+allow_indirect_imports = True
+
+[importlinter:contract:cli-domain-private]
+name = cli.domain is private to cli.application + cli.infrastructure
+type = forbidden
+source_modules =
+    gravityml.datasets.application
+    gravityml.datasets.infrastructure
+    gravityml.mlmodel.application
+    gravityml.mlmodel.infrastructure
+forbidden_modules =
+    gravityml.cli.domain
+allow_indirect_imports = True

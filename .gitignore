@@ -1,0 +1,11 @@
+.venv
+__pycache__/
+*.py[cod]
+
+# generated artifacts -- not version-controlled
+state/
+data/*/prepared/
+.coverage
+
+# AI workflow ledger -- local working state, not version-controlled
+.state-file.md
