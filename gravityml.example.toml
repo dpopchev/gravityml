@@ -1,0 +1,17 @@
+# gravityml configuration -- copy this file to `gravityml.toml` and edit.
+#
+#     cp gravityml.example.toml gravityml.toml
+#
+# Every setting is OPTIONAL; the values below are the built-in defaults, so an
+# empty (or absent) gravityml.toml behaves identically. Environment variables
+# (GRAVITYML__*) always override anything set here.
+
+# Root directory for all runtime artifacts. The datasets/, reports/, and models/
+# subdirectories are derived from it.
+state = "state"
+
+# Columns a source file MUST carry, as floats, to certify as a dataset. Point this
+# at your own data's columns; any other columns are dropped on `prepare-dataset`.
+# Override per-shell with, e.g.:
+#   GRAVITYML__REQUIRED_COLUMNS='["feature_a", "feature_b", "target"]'
+required_columns = ["x1", "x2", "y"]

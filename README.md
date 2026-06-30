@@ -64,9 +64,14 @@ Nothing about the tool is tied to the example. To run it on your own data:
 ## Configuration
 
 Settings resolve from a `gravityml.toml` file in the project root, layered UNDER
-`GRAVITYML__`-prefixed environment variables -- **env always wins**. Nested keys
-use the same `__` delimiter (e.g. `GRAVITYML__TRAIN__MAX_EPOCHS`). Every setting
-has a default, so configuration is optional.
+`GRAVITYML__`-prefixed environment variables -- **env always wins**. Every setting
+has a default, so configuration is optional. A ready-to-edit
+[`gravityml.example.toml`](gravityml.example.toml) ships with the repo -- copy it to
+`gravityml.toml` (which is gitignored, so your local config stays local) and adjust:
+
+```bash
+cp gravityml.example.toml gravityml.toml
+```
 
 | Setting | Env var | Default | Meaning |
 |---|---|---|---|

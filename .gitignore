@@ -7,5 +7,8 @@ state/
 data/*/prepared/
 .coverage
 
+# local configuration -- copy gravityml.example.toml -> gravityml.toml (kept local)
+gravityml.toml
+
 # AI workflow ledger -- local working state, not version-controlled
 .state-file.md
